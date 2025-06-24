@@ -1,8 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { ClerkProvider } from "@clerk/nextjs";
-import Image from "next/image";
-import { redirect } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return redirect("sign-in");
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.replace("/sign-in");
+    } else {
+      router.replace("/dashboard");
+    }
+  }, [user]);
+
+  return null;
 }
