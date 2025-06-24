@@ -3,10 +3,10 @@ import { Button } from '@/components/ui/button';
 import { db } from '@/utils/db';
 import { MockInterview } from '@/utils/schema';
 import { Lightbulb, WebcamIcon } from 'lucide-react';
-import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import Webcam from 'react-webcam';
 import { eq } from 'drizzle-orm';
+import Link from 'next/link';
 
 
 function Interview({params}) {
@@ -75,7 +75,10 @@ function Interview({params}) {
             </>
             }
             <div className='mt-10 flex justify-end items-end'>
-            <Button className='bg-blue-500'>Start Interview</Button>
+                <Link href={'/dashboard/interview/'+params.interviewId+'/start'}>
+                    <Button className='bg-blue-500'>Start Interview</Button>
+                </Link>
+            
             </div>
         </div>
         
