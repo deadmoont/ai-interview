@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation'
 function Feedback({params}) {
 
     const [feedbackList,setFeedbackList]=useState([]);
+    const [avgRating, setAvgRating] = useState(0);
     const router=useRouter();
     useEffect(()=>{
         GetFeedback();
@@ -28,6 +29,12 @@ function Feedback({params}) {
 
         console.log(result);
         setFeedbackList(result);
+
+        // ✅ Calculate average rating
+        const total = result.reduce((sum, item) => sum + Number(item.rating || 0), 0);
+        const avg = result.length > 0 ? (total / result.length).toFixed(1) : 0;
+
+        setAvgRating(avg);
     }
 
   return (
@@ -40,7 +47,7 @@ function Feedback({params}) {
         <>
         <h2 className='text-3xl font-bold text-green-500'>Congratulation!</h2>
         <h2 className='font-bold text-2xl'>Here is your Interview Feedback</h2>
-        <h2 className='text-blue-700 text-lg my-3'>Your overall interview rating:<strong>7/10</strong></h2>
+        <h2 className='text-blue-700 text-lg my-3'>Your overall interview rating:<strong>{avgRating}/10</strong></h2>
 
         <h2 className='text-sm text-gray-500'>Find below Interview Question with correct answer , Your answer and feedback for improvement</h2>
 
