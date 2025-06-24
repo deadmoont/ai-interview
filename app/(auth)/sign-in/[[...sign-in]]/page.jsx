@@ -33,9 +33,8 @@ export default function Page() {
               🐙
             </span>
           </h1>
-          <p className="max-w-sm">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-            nam dolorum aliquam, quibusdam aperiam voluptatum.
+          <p className="max-w-sm text-lg">
+            Test your knowledge and behaviour by taking AI based Interview.
           </p>
         </div>
       </div>
