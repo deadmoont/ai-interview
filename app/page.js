@@ -1,13 +1,19 @@
-// app/page.js
-import { auth } from "@clerk/nextjs/server";
+"use client";
+import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-export default function Home() {
-  const { userId } = auth();
+export default function HomePage() {
+  return (
+    <>
+      <SignedIn>
+        {/* 👇 if user is signed in, show dashboard directly */}
+        {redirect("/dashboard")}
+      </SignedIn>
 
-  if (userId) {
-    redirect("/dashboard"); // if logged in
-  } else {
-    redirect("/sign-in"); // if not logged in
-  }
+      <SignedOut>
+        {/* 👇 Clerk handles showing sign-in page */}
+        <RedirectToSignIn />
+      </SignedOut>
+    </>
+  );
 }
