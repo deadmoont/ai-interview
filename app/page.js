@@ -1,14 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ClerkProvider } from "@clerk/nextjs";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <ClerkProvider>
-      <div>
-        <h2>I am back </h2>
-        <Button>Hello</Button>
-      </div>
-    </ClerkProvider>
-  );
+  return redirect("sign-in");
 }
