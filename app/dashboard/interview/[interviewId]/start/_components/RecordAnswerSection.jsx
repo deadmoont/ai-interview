@@ -134,7 +134,6 @@ function RecordAnswerSection({
           }}
         />
       </div>
-
       <Button
         disabled={loading}
         variant="outline"
