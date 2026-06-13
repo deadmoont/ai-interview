@@ -46,11 +46,17 @@ function StartInterview() {
             const parsedData = JSON.parse(cleanedResponse);
 
             console.log("Parsed Data:", parsedData);
-            console.log("Questions:", parsedData?.interview_questions);
 
-            setMockInterviewQuestion(
-                parsedData?.interview_questions || []
-            );
+            // Handle both formats:
+            // 1. Array returned directly
+            // 2. { interview_questions: [...] }
+            const questions = Array.isArray(parsedData)
+                ? parsedData
+                : parsedData?.interview_questions || [];
+
+            console.log("Questions State:", questions);
+
+            setMockInterviewQuestion(questions);
 
         } catch (error) {
             console.error("Error parsing interview questions:", error);
